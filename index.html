@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Zen Essence Beauty by Jade — Westhoughton</title>
+
+  <!-- Modern font (optional) — keep or replace with local fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Primary theme variables (edit these to change site colors quickly) -->
+  <style>
+    :root{
+      --bg:#fff;
+      --text:#222;
+      --muted:#6b6b6b;
+      --primary:#FDAEDB; /* soft pink */
+      --accent:#A3B18A;  /* sage green */
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.7);
+      --maxw:1100px;
+      --radius:14px;
+      --shadow: 0 6px 22px rgba(16,24,40,0.08);
+    }
+
+    /* Reset + base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+
+    /* Layout container */
+    .site{
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+      align-items:center;
+      gap:48px;
+      padding-bottom:64px;
+    }
+    header{
+      width:100%;
+      background:transparent;
+      position:fixed;
+      top:18px;
+      left:0;
+      z-index:40;
+      display:flex;
+      justify-content:center;
+      pointer-events:none;
+    }
+    .nav-wrap{
+      width:calc(100% - 32px);
+      max-width:var(--maxw);
+      pointer-events:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    /* Navbar */
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      background:rgba(255,255,255,0.8);
+      padding:8px 12px;
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+    .brand .logo{
+      width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--accent));
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:18px;
+    }
+    .brand .name{font-weight:600;font-size:15px}
+    nav ul{display:flex;gap:16px;align-items:center;margin:0;padding:0;list-style:none}
+    nav a{font-weight:600;padding:8px 12px;border-radius:8px;transition:all .18s ease}
+    nav a:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    .cta{
+      background:var(--primary);
+      color:#111;
+      padding:10px 14px;border-radius:10px;font-weight:700;
+      box-shadow: 0 8px 24px rgba(253,174,219,0.18);
+    }
+
+    /* Hero */
+    .hero{
+      width:100%;
+      margin-top:78px; /* space for fixed header */
+      position:relative;
+      display:block;
+    }
+    .hero .bg{
+      width:100%;
+      min-height:64vh;
+      max-height:820px;
+      background-image: url('/assets/hero.jpg'); /* --> Replace with your hero image */
+      background-size:cover;
+      background-position:center;
+      border-radius:18px;
+      margin:0 auto;
+      max-width:var(--maxw);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      position:relative;
+    }
+    /* hero overlay for contrast */
+    .hero .overlay{
+      position:absolute;inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(255,255,255,0.02) 100%);
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      padding:48px;
+      gap:36px;
+    }
+    .hero .content{
+      max-width:620px;
+      color:#111;
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.7));
+      padding:28px;
+      border-radius:12px;
+      box-shadow: 0 10px 30px rgba(16,24,40,0.06);
+      transform: translateY(0);
+      animation: fadeUp .7s ease both;
+    }
+    .hero h1{margin:0;font-size:28px;letter-spacing:-0.3px}
+    .subtitle{color:var(--muted);margin-top:8px;font-weight:500}
+    .hero .buttons{display:flex;gap:12px;margin-top:16px}
+    .button-ghost{
+      padding:10px 14px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);font-weight:600;background:transparent
+    }
+    .hero .service-list{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap}
+    .pill{
+      background:rgba(0,0,0,0.04);padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px
+    }
+
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(10px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+
+    /* Main content area */
+    main{width:100%;max-width:var(--maxw);padding:24px;display:grid;gap:28px}
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap:28px;
+    }
+
+    /* About card */
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+    .muted{color:var(--muted);font-weight:500}
+
+    /* Services list */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+    .service{
+      padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.8));box-shadow:0 6px 18px rgba(0,0,0,0.04);
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .service:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(16,24,40,0.08)}
+    .service h4{margin:0 0 6px 0}
+    .service p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Pricing */
+    .pricing{
+      display:flex;gap:12px;flex-wrap:wrap;
+    }
+    .price{
+      background:linear-gradient(180deg,#fff,#fff);
+      border-radius:12px;padding:16px;min-width:160px;text-align:center;box-shadow:var(--shadow);
+    }
+    .price .cost{font-size:20px;font-weight:800;margin-top:6px}
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+    .gallery figure{margin:0;border-radius:10px;overflow:hidden}
+    .gallery img{display:block;width:100%;height:160px;object-fit:cover;transition:transform .3s ease}
+    .gallery img:hover{transform:scale(1.06)}
+
+    /* Contact / Sidebar */
+    aside .contact-item{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+    .icon{
+      width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700;background:linear-gradient(135deg,var(--primary),var(--accent));color:#111;
+    }
+    .small{font-size:13px;color:var(--muted)}
+
+    /* Footer */
+    footer{width:100%;padding:24px 18px;display:flex;justify-content:center;color:var(--muted)}
+    .footer-inner{max-width:var(--maxw);width:100%;display:flex;justify-content:space-between;gap:12px;align-items:center}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .grid{grid-template-columns:1fr}
+      .services-grid{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .hero .overlay{padding:20px}
+      .hero .content{max-width:100%}
+    }
+    @media (max-width:560px){
+      header{top:12px}
+      .brand .name{display:none}
+      nav ul{display:none}
+      .hero .bg{border-radius:12px}
+      .gallery img{height:140px}
+      .services-grid{grid-template-columns:1fr}
+    }
+
+    /* Accessibility helpers */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  </style>
+</head>
+<body>
+  <div class="site" id="top">
+
+    <!-- HEADER / NAV -->
+    <header>
+      <div class="nav-wrap" role="navigation" aria-label="Main navigation">
+        <div class="brand" aria-hidden="false">
+          <!-- Logo: replace /assets/logo.png or edit content -->
+          <div class="logo" title="Zen Essence">ZE</div>
+          <div class="name">
+            Zen Essence<br><span style="font-weight:500;font-size:12px;color:var(--muted)">Beauty by Jade</span>
+          </div>
+        </div>
+
+        <nav>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact" class="cta">Book / Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home" aria-label="Hero">
+      <div class="bg" role="img" aria-label="Luxury beauty treatment background">
+        <div class="overlay">
+          <div class="content" role="region" aria-labelledby="hero-title">
+            <h1 id="hero-title">Zen Essence Beauty by Jade</h1>
+            <p class="subtitle">Glow up monthly — your treatments, your way.</p>
+
+            <!-- CTA buttons -->
+            <div class="buttons">
+              <!-- phone link -->
+              <a class="cta" href="tel:+447551727777">Call: +44 7551 727777</a>
+              <!-- booking / booking link -->
+              <a class="button-ghost" href="https://facesconsent.com/v1/bookings/Zen" target="_blank" rel="noopener">Book Online</a>
+            </div>
+
+            <!-- highlighted services -->
+            <div class="service-list" aria-hidden="false">
+              <span class="pill">Facials</span>
+              <span class="pill">Brows &amp; Brow Lamination</span>
+              <span class="pill">Body Sculpting</span>
+            </div>
+
+            <!-- Promo -->
+            <p style="margin-top:12px;font-weight:600;color:var(--muted);font-size:14px">
+              Free birthday treatment • Priority booking • First session £5
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN -->
+    <main>
+
+      <div class="grid" aria-live="polite">
+
+        <!-- Left column (primary content) -->
+        <div>
+
+          <!-- ABOUT -->
+          <section class="card" id="about" aria-labelledby="about-title">
+            <h3 id="about-title">About — Zen Essence Beauty</h3>
+            <p class="muted">Luxury beauty treatments in Westhoughton, Greater Manchester — tailored facials, brows, lashes and full-body treatments designed for locals, professionals and families.</p>
+
+            <div style="height:12px"></div>
+
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+              <div style="flex:1;min-width:180px">
+                <h4 style="margin:0 0 6px 0">Why choose us</h4>
+                <p class="small">Clean, minimal studio with modern techniques, prioritized hygiene and tailored monthly memberships.</p>
+              </div>
+              <div style="min-width:140px">
+                <div style="background:linear-gradient(90deg,var(--primary),var(--accent));padding:10px;border-radius:12px;text-align:center;color:#111;font-weight:700">29 reviews — 100% recommend</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SERVICES -->
+          <section class="card" id="services" aria-labelledby="services-title">
+            <h3 id="services-title">Services & Facilities</h3>
+            <p class="small muted">Top services available — full list available on booking page.</p>
+
+            <div style="height:12px"></div>
+
+            <div class="services-grid" role="list">
+              <!-- Repeat/edit these blocks for each service. -->
+              <div class="service" role="listitem">
+                <h4>Facials</h4>
+                <p>Custom facial treatments to restore glow and tone.</p>
+              </div>
+
+              <div class="service" role="listitem">
+                <h4>Brows &amp; Brow Lamination</h4>
+                <p>Shaping, lamination and tinting for perfectly framed brows.</p>
+              </div>
+
+              <div class="service" role="listitem">
+                <h4>Lashes (LVL)</h4>
+                <p>Lift, volume and tint options to suit your style.</p>
+              </div>
+
+              <div class="service" role="listitem">
+                <h4>Waxing</h4>
+                <p>Fast, hygienic waxing with top-grade products.</p>
+              </div>
+
+              <div class="service" role="listitem">
+                <h4>Gel Nails</h4>
+                <p>Durable, glossy finishes and creative nail art.</p>
+              </div>
+
+              <div class="service" role="listitem">
+                <h4>Massage &amp; Body Sculpting</h4>
+                <p>Relaxing therapies and targeted sculpting treatments.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- PRICING -->
+          <section class="card" id="pricing" aria-labelledby="pricing-title">
+            <h3 id="pricing-title">Pricing — Memberships</h3>
+            <p class="small muted">Monthly membership examples. Individual treatments available — contact to enquire.</p>
+
+            <div style="height:12px"></div>
+
+            <div class="pricing">
+              <div class="price">
+                <div>2 treatments / month</div>
+                <div class="cost">£50</div>
+              </div>
+              <div class="price">
+                <div>3 treatments / month</div>
+                <div class="cost">£75</div>
+              </div>
+              <div class="price">
+                <div>4 treatments / month</div>
+                <div class="cost">£100</div>
+              </div>
+              <div class="price">
+                <div>5 treatments / month</div>
+                <div class="cost">£150</div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px" class="small muted">
+              <!-- edit promotion text below -->
+              Free birthday treatment • Priority booking • First session £5
+            </div>
+          </section>
+
+          <!-- GALLERY -->
+          <section class="card" id="gallery" aria-labelledby="gallery-title">
+            <h3 id="gallery-title">Gallery</h3>
+            <p class="small muted">Click images to view full-size (replace with your own images in /assets/).</p>
+
+            <div style="height:12px"></div>
+
+            <div class="gallery">
+              <!-- Must include at least /assets/gallery1.jpg ... /assets/gallery6.jpg -->
+              <figure><a href="/assets/gallery1.jpg" target="_blank" rel="noopener"><img src="/assets/gallery1.jpg" alt="Gallery image 1"></a></figure>
+              <figure><a href="/assets/gallery2.jpg" target="_blank" rel="noopener"><img src="/assets/gallery2.jpg" alt="Gallery image 2"></a></figure>
+              <figure><a href="/assets/gallery3.jpg" target="_blank" rel="noopener"><img src="/assets/gallery3.jpg" alt="Gallery image 3"></a></figure>
+              <figure><a href="/assets/gallery4.jpg" target="_blank" rel="noopener"><img src="/assets/gallery4.jpg" alt="Gallery image 4"></a></figure>
+              <figure><a href="/assets/gallery5.jpg" target="_blank" rel="noopener"><img src="/assets/gallery5.jpg" alt="Gallery image 5"></a></figure>
+              <figure><a href="/assets/gallery6.jpg" target="_blank" rel="noopener"><img src="/assets/gallery6.jpg" alt="Gallery image 6"></a></figure>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Right column (sidebar / contact) -->
+        <aside>
+          <div class="card">
+            <h4>Contact & Hours</h4>
+
+            <div class="contact-item">
+              <div class="icon" aria-hidden="true">P</div>
+              <div>
+                <div style="font-weight:700">Phone</div>
+                <div class="small"><a href="tel:+447551727777">+44 7551 727777</a></div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="icon" aria-hidden="true">B</div>
+              <div>
+                <div style="font-weight:700">Online bookings</div>
+                <div class="small"><a href="https://facesconsent.com/v1/bookings/Zen" target="_blank" rel="noopener">facesconsent booking</a></div>
+              </div>
+            </div>
+
+            <!-- If you have a proper email, replace the href below with mailto:your@address -->
+            <div class="contact-item">
+              <div class="icon" aria-hidden="true">@</div>
+              <div>
+                <div style="font-weight:700">Email</div>
+                <div class="small">
+                  <!-- NOTE: provided input was not a standard email. Replace with real email address if you have one. -->
+                  <a href="https://zenessencebeautybyjade.facesconsent.com" target="_blank" rel="noopener">zenessencebeautybyjade.facesconsent.com</a>
+                </div>
+              </div>
+            </div>
+
+            <div style="height:8px"></div>
+
+            <div class="small muted">
+              <strong>Location</strong><br>
+              Westhoughton, Greater Manchester
+            </div>
+
+            <div style="height:12px"></div>
+
+            <div>
+              <strong>Opening hours</strong>
+              <div class="small muted">Mon–Fri 10:00–19:00 (Late evenings Wed & Thu)</div>
+            </div>
+
+            <div style="height:14px"></div>
+
+            <a class="cta" href="https://facesconsent.com/v1/bookings/Zen" target="_blank" rel="noopener">Book Now</a>
+
+            <div style="height:14px"></div>
+
+            <div class="small muted">
+              <strong>Social</strong><br>
+              <a href="https://www.facebook.com/profile.php?id=61572464338484" target="_blank" rel="noopener">Facebook</a>
+            </div>
+          </div>
+
+          <div style="height:18px"></div>
+
+          <!-- Testimonials -->
+          <div class="card">
+            <h4>Reviews</h4>
+            <div class="small muted">“100% recommend” — 29 reviews</div>
+            <div style="height:10px"></div>
+            <div class="small">Want to show individual reviews? Replace this area with real names and quotes.</div>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="small">© <strong>Zen Essence Beauty by Jade</strong> — Westhoughton</div>
+        <div class="small">Designed for local businesses • Clean / Minimal • Modern</div>
+      </div>
+    </footer>
+  </div>
+
+  <!--
+    ===== EDITING NOTES =====
+    - Replace /assets/hero.jpg with your hero image (recommended: wide 1920x1080).
+    - Replace /assets/gallery1.jpg ... /assets/gallery6.jpg with your gallery images.
+    - Replace logo: /assets/logo.png (edit .brand .logo to use <img> if you have file).
+    - To change colors, edit :root variables --primary and --accent at top of <style>.
+    - To add an email, replace the Email <a> href with mailto:you@domain.com
+    - This template intentionally contains no JavaScript. If you add Google Analytics later, insert the GA snippet inside <head>.
+  -->
+</body>
+</html>
